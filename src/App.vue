@@ -1,28 +1,62 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <app-bar :quotesCount="quotesCount"></app-bar>
+    <app-form @quoteAdded="addQuote" :quotesCount="quotesCount" :lastQuoteId="lastQuoteId"></app-form>
+    <app-list :quotes="quotes" @deletedQuote="deleteQuote"></app-list>
+    <app-info></app-info>
+
+    <p>{{ lastQouteId }}</p>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+  import Bar from './components/Quote/Bar.vue';
+  import Form from './components/Quote/Form.vue';
+  import Info from './components/Quote/Info.vue';
+  import List from './components/Quote/List.vue';
 export default {
-  name: 'App',
   components: {
-    HelloWorld
+    'app-bar': Bar,
+    'app-form': Form,
+    'app-info': Info,
+    'app-list': List
+  },
+  data(){
+    return {
+      quotes: [],
+    }
+  },
+  methods: {
+    addQuote(quote){
+      this.quotes.unshift(quote);
+    },
+    deleteQuote(quote){
+      this.quotes = this.quotes.filter(q => quote.id != q.id);
+    },
+  },
+  computed: {
+    quotesCount(){
+      return this.quotes.length;
+    },
+    lastQuoteId(){
+      if(this.quotesCount <= 0){
+        return 0;
+      } else {
+        return this.quotes[0].id;
+      }
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  *{
+    box-sizing: border-box;
+  }
+  .container {
+    width: 70%;
+    margin: auto;
+    padding: 30px;
+    background-color:rgb(246, 246, 246);
+  }
 </style>
