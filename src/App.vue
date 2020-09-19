@@ -4,8 +4,6 @@
     <app-form @quoteAdded="addQuote" :quotesCount="quotesCount" :lastQuoteId="lastQuoteId"></app-form>
     <app-list :quotes="quotes" @deletedQuote="deleteQuote"></app-list>
     <app-info></app-info>
-
-    <p>{{ lastQouteId }}</p>
   </div>
 </template>
 
