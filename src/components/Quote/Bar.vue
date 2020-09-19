@@ -2,7 +2,7 @@
   <div>
       <h2>Quotes Added</h2>
       <div class="counter-bar">
-        <div v-if="quotesCount" class="progress-counter-bar" :style="{width: quotesCount * 10 + '%'}">{{ quotesCount }} / 10</div>
+        <div v-if="quotesCount" class="progress-counter-bar" :style="{width: (quotesCount / maxCount) * 100 + '%'}">{{ quotesCount }} / {{ maxCount }}</div>
         <p class="progress-counter-bar" v-else>There are no quotes!</p>
       </div>
   </div>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  props: ['quotesCount'],
+  props: ['quotesCount', 'maxCount'],
 }
 </script>
 

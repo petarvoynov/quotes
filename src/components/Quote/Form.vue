@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['quotesCount', 'lastQuoteId'],
+  props: ['quotesCount', 'lastQuoteId', 'maxCount'],
   data(){
     return {
       quote: '',
@@ -28,8 +28,8 @@ export default {
         this.showButton = false;
         return;
       }
-      if(this.quotesCount >= 10){
-        alert('You cannot have more than 10 quotes! Please remove some to add new ones.');
+      if(this.quotesCount >= this.maxCount){
+        return alert(`You cannot have more than ${this.maxCount} quotes! Please remove some to add new ones.`);
       } else {
         let quote = {
           'id': this.lastQuoteId + 1,

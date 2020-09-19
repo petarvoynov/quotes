@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <app-bar :quotesCount="quotesCount"></app-bar>
-    <app-form @quoteAdded="addQuote" :quotesCount="quotesCount" :lastQuoteId="lastQuoteId"></app-form>
+    <app-bar :quotesCount="quotesCount" :maxCount="maxCount"></app-bar>
+    <app-form @quoteAdded="addQuote" :quotesCount="quotesCount" :lastQuoteId="lastQuoteId" :maxCount="maxCount"></app-form>
     <app-list :quotes="quotes" @deletedQuote="deleteQuote"></app-list>
     <app-info></app-info>
   </div>
@@ -22,6 +22,7 @@ export default {
   data(){
     return {
       quotes: [],
+      maxCount: 10,
     }
   },
   methods: {
